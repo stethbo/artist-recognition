@@ -27,17 +27,9 @@ logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-stt = {
-    'Travis Scott': torch.tensor([1, 0, 0]),
-    'The Beatles': torch.tensor([0, 1, 0]),
-    'Queen': torch.tensor([0, 0, 1])
-}
+stt = {s: torch.eye(len(ARTISTS))[n] for n, s in enumerate(ARTISTS)}
+tts = {str(v): k for k, v in stt.items()}
 
-tts = {
-    str(torch.tensor([1, 0, 0])): 'Travis Scott',
-    str(torch.tensor([0, 1, 0])): 'The Beatles',
-    str(torch.tensor([0, 0, 1])): 'Queen'
-}
 
 
 def encode_label(label: str) -> torch.tensor:
