@@ -12,13 +12,13 @@ nltk.download("stopwords")
 
 def clean_up_text(sentence):
     sentence = str(sentence).lower()
-    sentence = re.sub("\[.*\]", "", sentence)  # remove sections markings in brakets
-    sentence = re.sub(r'[^\w]', ' ', sentence)  # romove punctuation
-    sentence = re.sub(r'[0-9]', '', sentence)  # remove numbers
-    sentence = re.sub(r'\s[a-z]\s', ' ', sentence)  # remove single characters
-    sentence = re.sub(r'^[a-z]\s', '', sentence)  # remove single characters from the start
+    sentence = re.sub("\[.*\]", "", sentence)  # remove sections markings in brackets
+    sentence = re.sub(r'[^\w\s]', ' ', sentence)  # remove punctuation
+    sentence = re.sub(r'\d', '', sentence)  # remove numbers
+    sentence = re.sub(r'\b\w\b', '', sentence)  # remove single characters
+    sentence = re.sub(r'^\w\s', '', sentence)  # remove single characters from the start
     sentence = re.sub(r'\s+', ' ', sentence).strip()  # remove extra spaces
-    sentence =  re.sub(r'.* lyrics', '', sentence)  # romove lyrics word as it is in all songs
+    sentence = re.sub(r'.*lyrics', '', sentence)  # remove lyrics word as it is in all songs
   
     return sentence
 
